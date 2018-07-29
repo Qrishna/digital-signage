@@ -60,15 +60,9 @@
     </div>
 
     <!--SHOWTIME-->
-    <div class="col-sm-5 text-white" style="background-color: black">
+    <div class="col-sm-12 text-white" style="background-color: black">
       <p style="color: black ">.</p>
-      <p style="font-size:60px; font-family: Courier" class="text-right"><b>5:45 PM</b></p>
-    </div>
-
-    <!--SHOWTIME-->
-    <div class="col-sm-7 text-white" style="background-color: black">
-      <p style="color: black ">.</p>
-      <p id="countdowntimer" style="font-size:60px; font-family: Courier" class="text-left"> </p>
+      <p id="countdowntimer" style="font-size:60px; font-family: Courier" class="text-center"> </p>
     </div>
 
   </div>
@@ -95,7 +89,7 @@
             let hoursStart = Math.floor((time_till_movie_starts % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutesStart = Math.floor((time_till_movie_starts % (1000 * 60 * 60)) / (1000 * 60));
             let secondsStart = Math.floor((time_till_movie_starts % (1000 * 60)) / 1000);
-            document.getElementById("countdowntimer").innerHTML = 'STARTING IN ' + hoursStart.toString().padStart(2, "0") + ":" + minutesStart.toString().padStart(2, "0") + ":" + secondsStart.toString().padStart(2, "0");
+            document.getElementById("countdowntimer").innerHTML = '5:45 PM ' + ' STARTING IN ' + hoursStart.toString().padStart(2, "0") + ":" + minutesStart.toString().padStart(2, "0") + ":" + secondsStart.toString().padStart(2, "0");
         } else {
             // If the movie has started, write Ending in + count down timer to time until movie end
             let time_till_movie_ends = showtime_stop - current_time;
@@ -104,7 +98,7 @@
             let hoursEnd = Math.floor((time_till_movie_ends % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutesEnd = Math.floor((time_till_movie_ends % (1000 * 60 * 60)) / (1000 * 60));
             let secondsEnd = Math.floor((time_till_movie_ends % (1000 * 60)) / 1000);
-            document.getElementById("countdowntimer").innerHTML =  'ENDING   IN ' + hoursEnd.toString().padStart(2, "0") + ":" + minutesEnd.toString().padStart(2, "0") + ":" + secondsEnd.toString().padStart(2, "0");
+            document.getElementById("countdowntimer").innerHTML =  '5:45 PM ' + ' ENDING   IN ' + hoursEnd.toString().padStart(2, "0") + ":" + minutesEnd.toString().padStart(2, "0") + ":" + secondsEnd.toString().padStart(2, "0");
         }
 
     }, 1000);

@@ -81,7 +81,7 @@
             let hoursStart = Math.floor((time_till_movie_starts % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             let minutesStart = Math.floor((time_till_movie_starts % (1000 * 60 * 60)) / (1000 * 60));
             let secondsStart = Math.floor((time_till_movie_starts % (1000 * 60)) / 1000);
-            document.getElementById("countdowntimer").innerHTML = 'STARTING IN ' + hoursStart.toString().padStart(2, "0") + ":" + minutesStart.toString().padStart(2, "0") + ":" + secondsStart.toString().padStart(2, "0");
+            document.getElementById("countdowntimer").innerHTML =  'STARTING IN ' + hoursStart.toString().padStart(2, "0") + ":" + minutesStart.toString().padStart(2, "0") + ":" + secondsStart.toString().padStart(2, "0");
         } else {
             // If the movie has started, write Ending in + count down timer to time until movie end
             let time_till_movie_ends = showtime_stop - current_time;
