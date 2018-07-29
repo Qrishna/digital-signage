@@ -14,7 +14,7 @@
 
 <body>
 
-<!--TOP DIV THAT DISPLAYS AUDITORIUM #-->
+<!--TOP DIV THAT DISPLAYS MOVIE TITLE AND AUDITORIUM #-->
 <div class="container-fluid">
 
   <div class="row">
@@ -34,7 +34,7 @@
   </div>
 
 </div>
-<!--END OF DIV THAT DISPLAYS AUDITORIUM #-->
+<!--END OF DIV THAT DISPLAYS  MOVIE TITLE AND AUDITORIUM #-->
 
 <!--MIDDLE DIV THAT DISPLAYS IMAGE-->
 <div class="containter-fluid">
@@ -50,27 +50,51 @@
 </div>
 <!--END OF MIDDLE DIV THAT DISPLAYS IMAGE-->
 
-<!--BOTTOM DIV THAT DISPLAYS MOVIE TITLE AND SHOW TIME-->
+<!--BOTTOM DIV THAT DISPLAYS COUNT DOWN TIMER-->
 <div class="container-fluid">
-
   <div class="row">
-
-    <!--SHOWTIME-->
-    <div class="col-sm-12 text-white" style="background-color: black">
-      <p style="color: black ">.</p>
-      <p style="font-size:50px" class="text-center">STARTING IN 0:31:29</p>
-    </div>
-
+        <div class="col-sm-12 text-white" style="background-color: black">
+            <p style="color: black ">.</p>
+            <p id="countdowntimer" style="font-size:50px; font-family: Courier" class="text-center"> </p>
+        </div>
   </div>
-
 </div>
-<!--END OF BOTTOM DIV THAT DISPLAYS MOVIE TITLE AND SHOW TIME-->
+<!--END OF BOTTOM DIV THAT DISPLAYS COUNT DOWN TIMER-->
+
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+<script>
+    let showtime_start = Date.parse('2018-07-28T19:52:30');
+    let showtime_stop  = Date.parse('2018-07-28T19:53:30');
+
+    let x = setInterval(function () {
+
+        let current_time = new Date().getTime();
+        let time_till_movie_starts = showtime_start - current_time;
+
+        if (time_till_movie_starts > 1000) {
+            // If the movie has not started, write Starting in + count down timer to time until movie start
+            let hoursStart = Math.floor((time_till_movie_starts % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutesStart = Math.floor((time_till_movie_starts % (1000 * 60 * 60)) / (1000 * 60));
+            let secondsStart = Math.floor((time_till_movie_starts % (1000 * 60)) / 1000);
+            document.getElementById("countdowntimer").innerHTML = 'STARTING IN ' + hoursStart.toString().padStart(2, "0") + ":" + minutesStart.toString().padStart(2, "0") + ":" + secondsStart.toString().padStart(2, "0");
+        } else {
+            // If the movie has started, write Ending in + count down timer to time until movie end
+            let time_till_movie_ends = showtime_stop - current_time;
+            time_till_movie_ends < 0 ? time_till_movie_ends = showtime_stop + 18000000 - current_time : time_till_movie_ends; // account for UTC
+
+            let hoursEnd = Math.floor((time_till_movie_ends % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            let minutesEnd = Math.floor((time_till_movie_ends % (1000 * 60 * 60)) / (1000 * 60));
+            let secondsEnd = Math.floor((time_till_movie_ends % (1000 * 60)) / 1000);
+            document.getElementById("countdowntimer").innerHTML = 'ENDING   IN ' + hoursEnd.toString().padStart(2, "0") + ":" + minutesEnd.toString().padStart(2, "0") + ":" + secondsEnd.toString().padStart(2, "0");
+        }
+
+    }, 1000);
+</script>
 </body>
 
 </html>
